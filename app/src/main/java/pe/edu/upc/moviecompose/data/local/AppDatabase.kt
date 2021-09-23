@@ -15,11 +15,13 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun MovieDao(): MovieDao
 
     companion object {
-        var INSTANCE: AppDatabase? = null
+        private var INSTANCE: AppDatabase? = null
         fun getInstance(context: Context): AppDatabase {
             if (INSTANCE == null) {
                 INSTANCE =
-                    Room.databaseBuilder(context, AppDatabase::class.java, "movieapp.db").build()
+                    Room.databaseBuilder(context, AppDatabase::class.java, "movieapp.db")
+                        .allowMainThreadQueries()
+                        .build()
             }
             return INSTANCE as AppDatabase
         }

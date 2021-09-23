@@ -1,9 +1,11 @@
 package pe.edu.upc.moviecompose.screens.popular
 
 import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
@@ -14,7 +16,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import coil.annotation.ExperimentalCoilApi
+import coil.compose.rememberImagePainter
+import pe.edu.upc.moviecompose.data.local.AppDatabase
 import pe.edu.upc.moviecompose.data.model.Movie
 import pe.edu.upc.moviecompose.data.remote.ApiClient
 import pe.edu.upc.moviecompose.data.remote.ApiResponse
@@ -58,12 +64,20 @@ fun MovieList(movies: List<Movie>) {
     }
 }
 
+@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun MovieRow(movie: Movie) {
+    val context = LocalContext.current
+
     Card(
         modifier = Modifier.padding(4.dp)
     ) {
         Row(modifier = Modifier.padding(8.dp)) {
+            Image(
+                painter = rememberImagePainter("https://image.tmdb.org/t/p/w500${movie.poster}"),
+                contentDescription = null,
+                modifier = Modifier.size(128.dp)
+            )
             Column(
                 modifier = Modifier.weight(7f)
             ) {
@@ -75,7 +89,7 @@ fun MovieRow(movie: Movie) {
                     .weight(1f)
                     .align(Alignment.CenterVertically),
                 onClick = {
-
+                    AppDatabase.getInstance(context).MovieDao().insert(movie)
                 }) {
                 Icon(Icons.Filled.Done, null)
             }

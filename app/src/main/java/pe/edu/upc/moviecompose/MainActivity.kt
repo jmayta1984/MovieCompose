@@ -5,10 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import pe.edu.upc.moviecompose.screens.popular.Popular
+import pe.edu.upc.moviecompose.screens.main.Main
 import pe.edu.upc.moviecompose.ui.theme.MovieComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,22 +16,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             MovieComposeTheme {
                 Surface(color = MaterialTheme.colors.background) {
-                    Popular()
+                    Main()
                 }
             }
         }
-    }
-}
-
-@Composable
-fun MyApp(){
-
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    MovieComposeTheme {
-        MyApp()
     }
 }

@@ -3,6 +3,7 @@ package pe.edu.upc.moviecompose.data.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "movies")
 data class Movie(
@@ -14,5 +15,9 @@ data class Movie(
     val title: String,
 
     @ColumnInfo(name = "movie_overview")
-    val overview: String
+    val overview: String,
+
+    @SerializedName("poster_path")
+    val poster: String
+
 )
