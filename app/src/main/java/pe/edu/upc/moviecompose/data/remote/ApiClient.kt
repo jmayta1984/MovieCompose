@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object ApiClient {
 
     private const val API_BASE_URL = "https://api.themoviedb.org/3/movie/"
-    var apiService: ApiService? = null
+    private var apiService: ApiService? = null
 
     fun build(): ApiService {
         val retrofit = Retrofit.Builder()

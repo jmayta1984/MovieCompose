@@ -10,24 +10,24 @@ import pe.edu.upc.moviecompose.data.model.Movie
 
 @Composable
 fun Favorite() {
-    val movies: List<Movie>
+    //val movies: List<Movie>
     Scaffold {
-        MovieList(movies)
+        MovieList()
     }
 }
 
 
 @Composable
-fun MovieList(movies: List<Movie>){
-    LazyColumn{
-        items(movies){ movie ->
+fun MovieList(movies: List<Movie> = listOf()) {
+    LazyColumn {
+        items(movies) { movie ->
             MovieRow(movie)
         }
     }
 }
 
 @Composable
-fun MovieRow(movie: Movie){
+fun MovieRow(movie: Movie) {
     Column {
         Text(movie.title)
         Text(movie.overview)
