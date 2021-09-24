@@ -2,6 +2,7 @@ package pe.edu.upc.moviecompose.data.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
@@ -15,9 +16,16 @@ data class Movie(
     val title: String,
 
     @ColumnInfo(name = "movie_overview")
-    val overview: String,
+    val overview: String
+) {
 
+    @Ignore
     @SerializedName("poster_path")
-    val poster: String
+    private var _poster: String = ""
+    val poster get() = "https://image.tmdb.org/t/p/w500$_poster"
 
-)
+}
+
+
+
+
